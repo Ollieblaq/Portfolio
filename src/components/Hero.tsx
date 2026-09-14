@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { PortraitImage } from './PortraitImage';
 
 const CYCLING_WORDS = ['websites', 'design systems', 'web apps', 'infrastructure'];
 
@@ -186,41 +187,10 @@ SELECTED CLIENT ENGAGEMENTS:
 
               {/* Portrait image container */}
               <div className="relative w-full h-full overflow-hidden bg-[var(--ink-raised)] border border-[var(--rule-ink)] z-10">
-                <img
-                  src="/images/portrait.webp"
+                <PortraitImage
                   alt="Portrait of Olivia Onyekaba, web developer and DevOps engineer"
-                  className="w-full h-full object-cover object-center grayscale contrast-105"
-                  loading="eager"
-                  decoding="async"
-                  onError={(e) => {
-                    // Fallback to elegant graphic if image path cannot be fetched in preview
-                    const target = e.currentTarget;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `
-                        <div class="w-full h-full flex flex-col justify-between p-8 bg-[var(--ink-raised)]">
-                          <span class="font-mono-custom text-xs text-[var(--ochre)] uppercase tracking-widest">// OLIVIA ONYEKABA</span>
-                          <div>
-                            <p class="font-display text-4xl text-[var(--text-on-ink)] leading-none">DevOps & Frontend Engineer</p>
-                            <p class="font-mono-custom text-xs text-[var(--muted-on-ink)] mt-3">Lagos, Nigeria</p>
-                          </div>
-                          <div class="flex gap-2">
-                            <span class="w-3 h-3 rounded-full bg-[var(--clay)]"></span>
-                            <span class="w-3 h-3 rounded-full bg-[var(--ochre)]"></span>
-                            <span class="w-3 h-3 rounded-full bg-[var(--sage)]"></span>
-                          </div>
-                        </div>
-                      `;
-                    }
-                  }}
+                  className="w-full h-full object-cover object-center contrast-[1.03] brightness-[0.98] transition-transform duration-500 hover:scale-[1.02]"
                 />
-
-                {/* Subtle caption pill in corner */}
-                <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 bg-[var(--ink)]/90 border border-[var(--rule-ink)] font-mono-custom text-[11px] text-[var(--text-on-ink)] flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--sage)]" aria-hidden="true" />
-                  <span>OLIVIA ONYEKABA · LAGOS</span>
-                </div>
               </div>
             </div>
           </div>

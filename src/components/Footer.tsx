@@ -55,15 +55,15 @@ export const Footer: React.FC = () => {
               </div>
 
               {/* WhatsApp direct link */}
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <a
-                  href="https://wa.me/2348030000000?text=Hello%20Olivia,%20I'd%20like%20to%20discuss%20a%20project."
+                  href="https://wa.me/2349039908443?text=Hello%20Olivia,%20I'd%20like%20to%20discuss%20a%20project."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 font-mono-custom text-xs uppercase tracking-wider px-4 py-2 border border-[var(--rule-ink)] text-[var(--text-on-ink)] hover:border-[var(--ochre)] hover:text-[var(--ochre)] transition-colors duration-150"
                 >
                   <span className="w-2 h-2 rounded-full bg-[var(--sage)]" aria-hidden="true" />
-                  Chat on WhatsApp →
+                  WhatsApp (+234 903 990 8443) →
                 </a>
               </div>
             </div>
@@ -265,6 +265,16 @@ export const Footer: React.FC = () => {
                   className="hover:text-[var(--text-on-ink)] transition-colors"
                 >
                   Twitter / X ↗
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/2349039908443?text=Hello%20Olivia,%20I'd%20like%20to%20discuss%20a%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[var(--text-on-ink)] transition-colors"
+                >
+                  WhatsApp ↗
                 </a>
               </li>
               <li>
