@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #14120F; /* warm near-black — base ground */
+  --ink-raised: #1F1C17; /* cards, raised panels */
+  --cream: #F6F1E4; /* full-bleed inverted sections */
+  --cream-soft: #EAE3D2; /* raised panels inside cream sections */
+  --clay: #E2542B; /* primary accent */
+  --ochre: #D9A521; /* secondary accent */
+  --sage: #7C8C6F; /* tertiary — status pills, quiet marks only */
+  --text-on-ink: #EDE8DC;
+  --muted-on-ink: #938C7E;
+  --text-on-cream: #14120F;
+  --muted-on-cream: #6E675B;
+  --rule-ink: rgba(237, 232, 220, 0.12);
+  --rule-cream: rgba(20, 18, 15, 0.14);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-grotesk: "Inter Tight", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* SECTION INVERSION RULES */
+/* Default (Dark Mode) */
+.section-ink {
+  background-color: var(--ink);
+  color: var(--text-on-ink);
+  border-color: var(--rule-ink);
+  --curr-bg: var(--ink);
+  --curr-raised: var(--ink-raised);
+  --curr-text: var(--text-on-ink);
+  --curr-muted: var(--muted-on-ink);
+  --curr-rule: var(--rule-ink);
+}
+
+.section-cream {
+  background-color: var(--cream);
+  color: var(--text-on-cream);
+  border-color: var(--rule-cream);
+  --curr-bg: var(--cream);
+  --curr-raised: var(--cream-soft);
+  --curr-text: var(--text-on-cream);
+  --curr-muted: var(--muted-on-cream);
+  --curr-rule: var(--rule-cream);
+}
+
+/* Light Mode: Inverts ink and cream sections while keeping all accents identical */
+html[data-theme="light"] .section-ink,
+html.light .section-ink {
+  background-color: var(--cream);
+  color: var(--text-on-cream);
+  border-color: var(--rule-cream);
+  --curr-bg: var(--cream);
+  --curr-raised: var(--cream-soft);
+  --curr-text: var(--text-on-cream);
+  --curr-muted: var(--muted-on-cream);
+  --curr-rule: var(--rule-cream);
+}
+
+html[data-theme="light"] .section-cream,
+html.light .section-cream {
+  background-color: var(--ink);
+  color: var(--text-on-ink);
+  border-color: var(--rule-ink);
+  --curr-bg: var(--ink);
+  --curr-raised: var(--ink-raised);
+  --curr-text: var(--text-on-ink);
+  --curr-muted: var(--muted-on-ink);
+  --curr-rule: var(--rule-ink);
+}
+
+/* Global Typography Classes */
+body {
+  font-family: var(--font-grotesk);
+  background-color: var(--ink);
+  color: var(--text-on-ink);
+  overflow-x: hidden;
+}
+
+html[data-theme="light"] body {
+  background-color: var(--cream);
+  color: var(--text-on-cream);
+}
+
+.font-display {
+  font-family: var(--font-serif);
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+}
+
+.font-mono-custom {
+  font-family: var(--font-mono);
+}
+
+.font-body {
+  font-family: var(--font-grotesk);
+}
+
+/* Eyebrow utility */
+.eyebrow {
+  font-family: var(--font-mono);
+  color: var(--ochre);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: block;
+}
+
+/* Marquee infinite animation */
+@keyframes marquee-linear {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-linear 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee-linear 42s linear infinite;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-placeholder {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee,
+  .animate-marquee-slow {
+    animation: none !important;
+  }
+}
+
+/* Focus styles strictly in clay */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--clay) !important;
+  outline-offset: 2px !important;
+}
