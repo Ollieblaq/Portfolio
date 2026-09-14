@@ -24,19 +24,27 @@ export const projects: Project[] = [
     index: '01',
     name: 'AfroVoy',
     year: '2025/2026',
-    role: 'Full-stack developer',
+    role: 'Chief Technology Officer',
     disciplines: ['Development', 'Design', 'Infrastructure'],
-    description: 'Diaspora travel marketplace connecting travellers with Lagos stays and experiences.',
-    stack: ['Next.js', 'Laravel'],
+    description: 'Travel technology platform for discovering and booking hotels, destinations and tours across Africa. Full-stack build across front end and API.',
+    stack: ['Next.js', 'Laravel', 'TypeScript'],
     liveUrl: 'https://afrovoy.com/',
     sections: [
       {
         heading: 'Overview',
-        body: 'A digital bridge designed specifically for the African diaspora, streamlining how travellers discover, vet, and book authenticated short-term stays, boutique accommodation, and cultural experiences across Lagos.'
+        body: 'Technical lead and founding-team member at a Nigerian travel technology company building a platform for discovering, planning and booking hotels, destinations and tours across Africa.'
       },
       {
-        heading: 'Architecture',
-        body: 'Engineered with a high-performance Next.js presentation tier backed by Laravel APIs, handling booking reservation state, currency reconciliation, and merchant onboarding across regional banking rails.'
+        heading: 'Architecture & Full-Stack Build',
+        body: 'Set the technical direction and built the product as a Next.js front end against a Laravel API, owning architecture decisions on both sides of the stack.'
+      },
+      {
+        heading: 'Multi-Tenant Systems',
+        body: 'Designed the platform around three distinct user types — travellers, hotel partners and tour operators — covering listing management, availability and booking flows.'
+      },
+      {
+        heading: 'International Payments',
+        body: 'Implemented international card payment handling so diaspora travellers can book from abroad in their local currency.'
       }
     ]
   },
@@ -45,11 +53,11 @@ export const projects: Project[] = [
     index: '02',
     name: 'HPM Electric',
     year: '2026',
-    role: 'Full-stack developer',
+    role: 'Freelance Web Developer',
     disciplines: ['Development', 'Infrastructure'],
-    description: 'Astro site for a Pennsylvania electrical contractor, with a programmatic page matrix generating every service and service-area combination.',
-    stack: ['Astro', 'TypeScript', 'Programmatic SEO', 'Schema.org'],
-    liveUrl: 'https://www.hpmelectric.com/',
+    description: 'Site for a Pennsylvania electrical contractor built on a programmatic page matrix spanning four service categories, roughly twenty sub-services and eight service areas, with lead capture at three points on every page.',
+    stack: ['Astro', 'TypeScript', 'Schema.org', 'Technical SEO'],
+    liveUrl: 'https://hpmelectric.com/',
     sections: [
       {
         heading: 'Problem',

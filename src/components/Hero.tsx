@@ -57,32 +57,77 @@ export const Hero: React.FC = () => {
 
   const handleDownloadCv = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Provide clean curriculum vitae summary download/modal
-    const cvText = `OLIVIA ONYEKABA — CURRICULUM VITAE
-Location: Lagos, Nigeria
-Disciplines: Web Development, UI/UX Design, DevOps Engineering
-Contact: oliviaimmaculate1@gmail.com
+    const cvText = `OLIVIA ONYEKABA — WEB DEVELOPER
+Lagos, Nigeria | oliviaimmaculate1@gmail.com | 0903 990 8443 | github.com/Ollieblaq
 
-SUMMARY:
-Multidisciplinary engineer bridging interface craft and robust infrastructure. Experienced in building full-stack applications with Next.js, React, Astro, Laravel, and WordPress, complemented by automated deployment pipelines, Docker containerisation, and cloud architecture.
+================================================================================
+PROFILE
+================================================================================
+Web developer with five years' experience building and shipping production websites
+and web applications for clients across Nigeria, the United Kingdom and the United States.
+Comfortable across the stack — Next.js and React on the front end, Laravel on the back end —
+and equally at home delivering commerce, membership and lead-generation builds on WordPress
+and WooCommerce. Currently Chief Technology Officer at AfroVoy, a Nigerian travel technology company.
 
-TECHNICAL EXPERTISE:
-- Languages & Frameworks: TypeScript, JavaScript, PHP, React, Next.js, Astro, Tailwind CSS, Node.js, Laravel
-- Infrastructure & DevOps: Docker, GitHub Actions, Nginx, Linux Server Administration, Vercel, DigitalOcean, Cloudflare DNS & SSL
-- Design: UI/UX Design Systems, Figma, Responsive Architecture, WCAG Accessibility
+================================================================================
+TECHNICAL SKILLS
+================================================================================
+Languages:             TypeScript, JavaScript, PHP, HTML5, CSS3
+Frameworks & Libraries: Next.js, React, Laravel, Astro, Tailwind CSS
+CMS & E-commerce:      WordPress, WooCommerce, Elementor, Gravity Forms, Stripe, PayPal
+Practices:             Responsive development, REST API integration, technical SEO,
+                       Schema.org structured data, Git version control, cross-browser testing
 
-SELECTED CLIENT ENGAGEMENTS:
-- AfroVoy: Diaspora travel marketplace connecting travellers with verified Lagos stays and experiences (Next.js, Laravel).
-- HPM Electric: Programmatic multi-township SEO service matrix generating localized leads for Pennsylvania electrical contractor (Astro, TypeScript).
-- District 9 Branded Residences: Luxury residential sales platform with two-step investor expression of interest flow (WordPress, Gravity Forms).
-- All Grace African Market: High-volume UK grocery commerce with parallel WhatsApp checkout routing (WooCommerce, Stripe).
-- HYTENS Solutions: Enterprise ICT infrastructure corporate platform with structured service verticals.
+================================================================================
+EXPERIENCE
+================================================================================
+Chief Technology Officer, AfroVoy (2025 – Present)
+Lagos, Nigeria — travel technology
+• Technical lead and founding-team member at a Nigerian travel technology company building a platform for discovering, planning and booking hotels, destinations and tours across Africa.
+• Set the technical direction and built the product as a Next.js front end against a Laravel API, owning architecture decisions on both sides of the stack.
+• Designed the platform around three distinct user types — travellers, hotel partners and tour operators — covering listing management, availability and booking flows.
+• Implemented international card payment handling so diaspora travellers can book from abroad in their local currency.
+
+Web Developer, Bature Digital (2025 – Present)
+Lagos, Nigeria — subscription digital marketing agency
+• In-house web developer for an agency serving clients across the United States, United Kingdom, Australia and Canada, delivering the web development arm of its marketing-as-a-service offering.
+• Build and maintain conversion-focused client websites, working to Core Web Vitals performance targets and handing over sites the client's own team can run.
+• Run conversion-rate optimisation experiments on live client sites and implement the winning variants.
+• Work alongside the SEO, paid ads, social and email specialists so that site builds support the wider channel strategy rather than sitting apart from it.
+
+Freelance Web Developer (2021 – Present)
+Lagos, Nigeria — clients in Nigeria, the UK and the US
+• Deliver end-to-end website builds for clients across real estate, e-commerce, education, enterprise ICT and skilled trades, from requirements through to launch and handover.
+• Built a programmatic page architecture in Astro for a US electrical contractor, generating individually optimised landing pages for every service and service-area combination, each with its own metadata and schema markup.
+• Delivered commerce and membership systems including a multi-currency WooCommerce storefront, a several-hundred-SKU store with a parallel WhatsApp ordering path, and a gated student portal with registration, login and dashboard.
+• Work directly with non-technical clients to scope requirements, agree timelines and provide post-launch support.
+
+================================================================================
+SELECTED PROJECTS
+================================================================================
+• AfroVoy (afrovoy.com): Travel technology platform for discovering and booking hotels, destinations and tours across Africa. Full-stack build across front end and API (Next.js · Laravel · TypeScript).
+• HPM Electric (hpmelectric.com): Site for a Pennsylvania electrical contractor built on a programmatic page matrix spanning 4 service categories, ~20 sub-services and 8 service areas (Astro · TypeScript · Schema.org · Technical SEO).
+• All Grace African Market (allgraceafricanmarket.co.uk): WooCommerce storefront for a UK African grocery retailer with several hundred SKUs, Stripe, order tracking and WhatsApp ordering (WordPress · WooCommerce · Elementor · Stripe).
+• District 9 Branded Residences (district9brandedresidences.com): Sales site for luxury branded-residence development in Abuja with 2-step Expression of Interest form (WordPress · Elementor · Gravity Forms).
+• London Bible Academy (londonbibleacademy.com): Site and student portal for UK-registered theological training charity with gated student layer and PayPal donation flow (WordPress · Elementor · Membership · PayPal).
+• Aura Cayane (auracayane.com): WooCommerce store for fragrance brand with 3-currency switcher (naira/sterling/dollar), accounts, wishlists (WordPress · WooCommerce · Multi-currency).
+• TheCampStack (thecampstack.com): Single-page React application for camp software integration platform (React · JavaScript).
+• HYTENS Solutions (hytens-services.com): Corporate site for enterprise ICT infrastructure provider across 6 service verticals and 6 industry segments (WordPress · Elementor).
+• Kúnlé Ìlòrí-Diamond (kunleiloridiamond.com): Personal site for real estate entrepreneur with holdings across Dubai, US, UK and Nigeria (WordPress).
+
+================================================================================
+EDUCATION
+================================================================================
+Higher National Diploma, Electrical/Electronics Engineering
+Federal Polytechnic Oko, Anambra State, Nigeria
+
+References: Available on request
 `;
     const blob = new Blob([cvText], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'Olivia_Onyekaba_CV_2026.txt';
+    link.download = 'Olivia_Onyekaba_CV.txt';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

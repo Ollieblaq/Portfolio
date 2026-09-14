@@ -239,12 +239,12 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 font-mono-custom text-xs text-[var(--muted-on-ink)]">
               <li>
                 <a
-                  href="https://github.com/oliviaonyekaba"
+                  href="https://github.com/Ollieblaq"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[var(--text-on-ink)] transition-colors"
                 >
-                  GitHub ↗
+                  GitHub (Ollieblaq) ↗
                 </a>
               </li>
               <li>
