@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { projects } from '../data/projects';
-import { ProjectImage } from '../components/ProjectImage';
 import { Footer } from '../components/Footer';
 
 export const WorkDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const [hoverNext, setHoverNext] = useState(false);
 
   // Scroll to top on slug change
   useEffect(() => {
@@ -54,15 +52,6 @@ export const WorkDetailPage: React.FC = () => {
 
       {/* 1. Full-bleed screenshot at top with the project name overlaid in display serif */}
       <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] max-h-[680px] overflow-hidden border-b border-[var(--rule-ink)] bg-[var(--ink-raised)]">
-        <ProjectImage
-          url={project.liveUrl}
-          projectName={project.name}
-          priority
-          width={1800}
-          height={1000}
-          className="w-full h-full object-cover object-top opacity-70"
-        />
-
         {/* Gradient dark mask for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)] via-[var(--ink)]/40 to-transparent pointer-events-none" />
 
@@ -157,12 +146,6 @@ export const WorkDetailPage: React.FC = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Status Indicator */}
-              <div className="pt-4 border-t border-[var(--rule-ink)] flex items-center gap-2 font-mono-custom text-xs text-[var(--sage)]">
-                <span className="w-2 h-2 rounded-full bg-[var(--sage)]" aria-hidden="true" />
-                <span>Production Live Verified</span>
-              </div>
             </div>
           </aside>
 
@@ -203,31 +186,6 @@ export const WorkDetailPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. One cream band per case study holding a pulled-out line at display size */}
-      <section className="section-cream w-full py-20 sm:py-28 border-y border-[var(--rule-cream)] my-12">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8 text-center">
-          <span className="eyebrow mb-4 text-center">ARCHITECTURAL IMPERATIVE</span>
-          <blockquote className="font-display text-[clamp(1.85rem,4.5vw,3.5rem)] text-[var(--text-on-cream)] leading-[1.1] italic">
-            “Engineered with rigorous performance parameters, clean typography, and zero compromises on load velocity.”
-          </blockquote>
-        </div>
-      </section>
-
-      {/* 4. Full-bleed screenshots between prose sections */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 py-12">
-        <div className="relative aspect-[16/10] overflow-hidden border border-[var(--rule-ink)] bg-[var(--ink-raised)]">
-          <ProjectImage
-            url={project.liveUrl}
-            projectName={project.name}
-            width={1600}
-            height={1000}
-            className="w-full h-full"
-          />
-        </div>
-        <p className="font-mono-custom text-xs text-[var(--muted-on-ink)] mt-3 text-right">
-          FIG. 01 — FULL VIEWPORT RENDERING FOR {project.name.toUpperCase()} ({new URL(project.liveUrl).hostname})
-        </p>
-      </div>
 
       {/* 5. Bottom: next-project link at display size with its screenshot as a hover preview and a clay arrow */}
       <div className="border-t border-[var(--rule-ink)] py-20 sm:py-28 section-ink">
@@ -239,8 +197,6 @@ export const WorkDetailPage: React.FC = () => {
           </div>
 
           <div
-            onMouseEnter={() => setHoverNext(true)}
-            onMouseLeave={() => setHoverNext(false)}
             onClick={() => navigate(`/work/${nextProject.slug}`)}
             className="group cursor-pointer block pt-4 pb-8"
           >
@@ -263,21 +219,6 @@ export const WorkDetailPage: React.FC = () => {
                   →
                 </span>
               </div>
-            </div>
-
-            {/* Hover preview screenshot preview */}
-            <div
-              className={`mt-8 max-w-xl aspect-[16/10] overflow-hidden border border-[var(--rule-ink)] bg-[var(--ink-raised)] transition-all duration-200 ${
-                hoverNext ? 'opacity-100 max-h-[360px]' : 'opacity-0 max-h-0'
-              }`}
-            >
-              <ProjectImage
-                url={nextProject.liveUrl}
-                projectName={nextProject.name}
-                width={800}
-                height={500}
-                className="w-full h-full"
-              />
             </div>
           </div>
         </div>

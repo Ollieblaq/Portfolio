@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Draft portrait PNGs — final asset will be public/images/portrait.webp
+public/images/*.png

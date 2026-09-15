@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { projects, Project, Discipline } from '../data/projects';
-import { ProjectImage } from './ProjectImage';
 
 type FilterType = 'All' | Discipline;
 
@@ -9,51 +8,11 @@ export const SelectedWork: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType>('All');
   const [visibleCount, setVisibleCount] = useState<number>(5);
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [laggedPos, setLaggedPos] = useState({ x: 0, y: 0 });
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  const sectionRef = useRef<HTMLElement>(null);
-  const animFrameRef = useRef<number | null>(null);
-
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', handler);
-
     setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
-
-    return () => mediaQuery.removeEventListener('change', handler);
   }, []);
-
-  // Smooth cursor follow with easing lag
-  useEffect(() => {
-    if (prefersReducedMotion || isTouchDevice) return;
-
-    const updateLag = () => {
-      setLaggedPos((prev) => {
-        const dx = mousePos.x - prev.x;
-        const dy = mousePos.y - prev.y;
-        // Ease factor 0.12 gives smooth floating lag
-        return {
-          x: prev.x + dx * 0.12,
-          y: prev.y + dy * 0.12,
-        };
-      });
-      animFrameRef.current = requestAnimationFrame(updateLag);
-    };
-
-    animFrameRef.current = requestAnimationFrame(updateLag);
-    return () => {
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-    };
-  }, [mousePos, prefersReducedMotion, isTouchDevice]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
-  };
 
   const filteredProjects = projects.filter((project) => {
     if (activeFilter === 'All') return true;
@@ -66,8 +25,6 @@ export const SelectedWork: React.FC = () => {
   return (
     <section
       id="work"
-      ref={sectionRef}
-      onMouseMove={handleMouseMove}
       className="section-cream relative py-24 sm:py-32 border-b border-[var(--rule-cream)] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
@@ -176,19 +133,6 @@ export const SelectedWork: React.FC = () => {
                           </span>
                         ))}
                       </div>
-
-                      {/* Touch inline thumbnail indicator */}
-                      {isTouchDevice && (
-                        <div className="w-16 h-11 overflow-hidden border border-[var(--rule-cream)] bg-[var(--ink-raised)]">
-                          <ProjectImage
-                            url={project.liveUrl}
-                            projectName={project.name}
-                            width={300}
-                            height={200}
-                            className="w-full h-full"
-                          />
-                        </div>
-                      )}
                     </div>
                   </div>
                 </Link>
@@ -211,32 +155,6 @@ export const SelectedWork: React.FC = () => {
         )}
       </div>
 
-      {/* Floating cursor preview (desktop only, disabled with prefers-reduced-motion) */}
-      {!prefersReducedMotion && !isTouchDevice && hoveredProject && (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed z-50 w-[440px] aspect-[3/2] overflow-hidden border border-[var(--rule-ink)] bg-[var(--ink-raised)] transition-opacity duration-200"
-          style={{
-            left: `${laggedPos.x + 24}px`,
-            top: `${laggedPos.y - 120}px`,
-            opacity: hoveredProject ? 1 : 0,
-            transform: 'translate3d(0,0,0)',
-          }}
-        >
-          <ProjectImage
-            url={hoveredProject.liveUrl}
-            projectName={hoveredProject.name}
-            width={660}
-            height={440}
-            priority
-            className="w-full h-full"
-          />
-          <div className="absolute bottom-0 inset-x-0 bg-[var(--ink)]/90 px-3 py-1.5 border-t border-[var(--rule-ink)] flex items-center justify-between text-[11px] font-mono-custom text-[var(--text-on-ink)]">
-            <span className="text-[var(--ochre)]">{hoveredProject.name}</span>
-            <span className="text-[var(--sage)]">VIEW CASE STUDY →</span>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

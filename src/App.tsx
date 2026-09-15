@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
-import { NoiseOverlay } from './components/NoiseOverlay';
-import { ScrollProgress } from './components/ScrollProgress';
 import { HomePage } from './pages/HomePage';
 import { WorkDetailPage } from './pages/WorkDetailPage';
 import { AboutPage } from './pages/AboutPage';
@@ -37,12 +35,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="relative min-h-screen selection:bg-[var(--clay)] selection:text-[var(--cream)]">
-        {/* Fixed full-viewport SVG noise overlay at ~3% opacity */}
-        <NoiseOverlay />
-
-        {/* Thin clay scroll-progress bar fixed at the very top of viewport */}
-        <ScrollProgress />
-
         {/* Sticky Header with Lagos time, theme toggle, and project button */}
         <Header theme={theme} onToggleTheme={toggleTheme} />
 
